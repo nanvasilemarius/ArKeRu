@@ -1,0 +1,19 @@
+[package]
+name = "launcher"
+version = "0.31.0"
+edition = "2021"
+description = "Finds an ArduinoKernel board on any OS and opens a terminal to it. No cargo, no port hunting."
+
+[[bin]]
+name = "akterm"
+path = "src/main.rs"
+
+[dependencies]
+# The project's first runtime dependency, and deliberately confined here.
+# Enumerating serial ports with USB VID/PID by hand means SetupAPI on Windows,
+# sysfs walking on Linux and IOKit on macOS -- three platform backends to write
+# and only one of them testable from here. `kernel` remains dependency-free.
+serialport = "4"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"

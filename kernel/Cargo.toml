@@ -1,0 +1,10 @@
+[package]
+name = "kernel"
+version = "0.31.0"
+edition = "2021"
+build = "build.rs"
+description = "A DOS-style command kernel with a BIOS-style POST screen. no_std, no heap."
+
+[dependencies]
+# Intentionally none. This crate is pure logic over a Platform trait so it
+# builds identically for the RA4M1 and for the host test harness.

@@ -1,0 +1,12 @@
+[package]
+name = "host"
+version = "0.31.0"
+edition = "2021"
+description = "Runs the ArduinoKernel in a PC terminal, so the shell and BIOS screen can be developed without hardware."
+
+[[bin]]
+name = "arduinodos"
+path = "src/main.rs"
+
+[dependencies]
+kernel = { path = "../kernel" }

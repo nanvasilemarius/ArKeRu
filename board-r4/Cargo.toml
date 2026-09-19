@@ -1,0 +1,25 @@
+[package]
+name = "board-r4"
+version = "0.31.0"
+edition = "2021"
+description = "RA4M1 (Arduino UNO R4 WiFi) backend for the ArduinoKernel."
+
+[[bin]]
+name = "arduinokernel"
+path = "src/main.rs"
+
+[dependencies]
+kernel = { path = "../kernel" }
+cortex-m = "0.7"
+# `device`: this crate supplies the peripheral interrupt vector table itself
+# (`__INTERRUPTS` in main.rs). Without the feature, cortex-m-rt provides a
+# table of reserved entries and the two definitions collide under LTO.
+cortex-m-rt = { version = "0.7", features = ["device"] }
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+debug = true      # symbols cost nothing in flash and make objdump useful
+panic = "abort"
+overflow-checks = true

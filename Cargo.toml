@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = ["kernel", "host", "launcher"]
+# board-r4 is excluded from the default workspace because it builds for
+# thumbv7em-none-eabihf with a different linker setup. Build it explicitly:
+#   cargo build --release --manifest-path board-r4/Cargo.toml
+exclude = ["board-r4"]
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
